@@ -4,6 +4,7 @@ import psutil
 from dotenv import load_dotenv
 from telegram import InputTextMessageContent,InlineQueryResultArticle, Update
 from telegram.ext import InlineQueryHandler, ApplicationBuilder, CommandHandler, MessageHandler, filters, ChatMemberHandler
+from tools import *
 
 load_dotenv("/home/master/Panel/.env")
 
@@ -26,6 +27,8 @@ async def status(update: Update, context):
         f"CPU: {cpu}%\n"
         f"RAM: {ram}%\n"
         f"DISK: {disk}%"
+        f"CPU TEMP: {get_cpu_temp()}"
+        f"FAN SPEED: {get_fan_speed()}"
     )
 
 

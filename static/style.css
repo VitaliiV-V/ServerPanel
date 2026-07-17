@@ -1,6 +1,7 @@
 html,
 body {
-    height: 100%;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
     margin: 5px;
     display: flex;
@@ -46,7 +47,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 20%;
-    height: 100vh;
+    height: 130 vh;
 }
 
 .main {
@@ -59,7 +60,7 @@ body {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
-    height: 100vh;
+    min-height: 130vh;
 }
 
 .monitor {
@@ -74,27 +75,38 @@ body {
     text-align: left;
     display: flex;
     gap: 5px;
-    flex: 3;
+    flex: 5;
 }
 
 .systeminfo {
     text-align: left;
     display: flex;
     gap: 5px;
-    flex: 5;
+    flex: 3;
+    height: 90%;
 }
 
 .graph,
-.power,
 .info {
     padding: 5px;
     text-align: left;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    height: 90%;
     display: flex;
     gap: 5px;
 }
+
+.power {
+    width: 45%;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 
 .graph {
     padding: 10px;
@@ -299,13 +311,13 @@ body {
 }
 
 .btn-grid {
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 95%;
-    height: 78%;
+    width: 100%;
     gap: 10px;
 }
+
 
 .btn-grid button {
     width: 100%;

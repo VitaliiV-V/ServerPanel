@@ -110,42 +110,44 @@ def info():
         "volume" : 0,
         "logs" : logs
     }
-    for item in sysinfo:
-        key = item.get("type")
+    # for item in sysinfo:
+    #     key = item.get("type")
 
-        if key == "OS":
-            res["os"] = item["result"]["prettyName"]
+    #     if key == "OS":
+    #         res["os"] = item["result"]["prettyName"]
 
-        elif key == "Kernel":
-            res["kernel"] = item["result"]["release"]
+    #     elif key == "Kernel":
+    #         res["kernel"] = item["result"]["release"]
 
-        elif key == "Host":
-            res["host"] = item["result"]["name"]
+    #     elif key == "Host":
+    #         res["host"] = item["result"]["name"]
 
-        elif key == "Uptime":
-            res["uptime"] = item["result"]["pretty"]
+    #     elif key == "Uptime":
+    #         res["uptime"] = item["result"]["pretty"]
 
-        elif key == "Memory":
-            res["ram"] = {
-                "used": item["result"]["used"],
-                "total": item["result"]["total"]
-            }
-        elif key == "Shell":
-            res["shell"] = item["result"]["name"]
+    #     elif key == "Memory":
+    #         res["ram"] = {
+    #             "used": item["result"]["used"],
+    #             "total": item["result"]["total"]
+    #         }
+    #     elif key == "Shell":
+    #         res["shell"] = item["result"]["name"]
 
-        elif key == "Swap":
-            res["swap"] = {
-                "used": item["result"]["used"],
-                "total": item["result"]["total"]
-            }
-        elif key == "Packages":
-            res["packages"] = item["result"]["all"]
-        elif key == "GPU":
-            res["gpu"] = item["result"]["name"]
-        elif key == "CPU":
-            res["cpu"] = item["result"]["name"]
-        elif key == "Disk":
-            res["disk"] = item["result"]
+    #     elif key == "Swap":
+    #         res["swap"] = {
+    #             "used": item["result"]["used"],
+    #             "total": item["result"]["total"]
+    #         }
+    #     elif key == "Packages":
+    #         res["packages"] = item["result"]["all"]
+    #     elif key == "GPU":
+    #         res["gpu"] = [
+    #             gpu["name"] for gpu in item["result"]
+    #         ]
+    #     elif key == "CPU":
+    #         res["cpu"] = item["result"]["name"]
+    #     elif key == "Disk":
+    #         res["disk"] = item["result"]
     return res
 
 @app.post("/exec")

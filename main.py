@@ -17,6 +17,7 @@ from fastapi import Request
 import secrets
 from dotenv import load_dotenv
 import os
+import pwd
 
 load_dotenv("/home/master/Panel/.env")
 
@@ -103,7 +104,8 @@ def info():
         "hostname": socket.gethostname(),
         "myip" : requests.get("https://api.ipify.org?format=json").json()["ip"],
         "track" : "None",
-        "status" : "None", 
+        "status" : "None",
+        "shell" : pwd.getpwuid(os.getuid()).pw_shell,
         "progress" : 0, 
         "position" : "None",
         "length" : "None",
@@ -129,8 +131,6 @@ def info():
                 "used": item["result"]["used"],
                 "total": item["result"]["total"]
             }
-        elif key == "Shell":
-            res["shell"] = item["result"]["exe"]
 
         elif key == "Swap":
             total = sum(swap["total"] for swap in item["result"])

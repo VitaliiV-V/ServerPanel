@@ -1,6 +1,7 @@
 
 import os
 import psutil
+import socket
 from dotenv import load_dotenv
 from telegram import InputTextMessageContent,InlineQueryResultArticle, Update
 from telegram.ext import InlineQueryHandler, ApplicationBuilder, CommandHandler, MessageHandler, filters, ChatMemberHandler
@@ -16,7 +17,7 @@ bot_app = ApplicationBuilder().token(TOKEN).build()
 
 async def start(update: Update, context):
     if update.message.from_user.id == int(OWNER_ID):
-        await update.message.reply_text("🟢 Серверный бот запущен")
+        await update.message.reply_text(f"🟢 {socket.gethostname()} is online")
 
 
 async def status(update: Update, context):

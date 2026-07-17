@@ -21,6 +21,8 @@ async function updateStats() {
     document.querySelector(".valueshell").textContent = data2.shell;
     document.querySelector(".valuecpu").textContent = data2.cpuname;
     document.querySelector(".valuegpu").textContent = data2.gpu;
+
+    document.querySelector(".valuedisk").textContent = data2.diskname;
     document.querySelector(".valuetime").textContent = data2.uptime;
     document.querySelector(".trackname").textContent = data2.track;
     document.querySelector(".position").textContent = data2.position;

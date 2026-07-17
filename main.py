@@ -157,11 +157,7 @@ def info():
                 for disk in item["result"]
             )
 
-            res["diskname"] = {
-                "used": round(used / 1024**3, 2),
-                "total": round(total / 1024**3, 2),
-                "percent": round((used / total) * 100, 1)
-            }
+            res["diskname"] = f" {round(used / 1024**3, 2)} GB / {round(total / 1024**3, 2)} GB"
     return res
 
 @app.post("/exec")

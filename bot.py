@@ -22,7 +22,7 @@ async def status(update: Update, context):
     disk = psutil.disk_usage('/').percent
 
     await update.message.reply_text(
-        f"🖥 Server Status\n\n"
+        f"🗄️ Server Status\n\n"
         f"CPU: {cpu}%\n"
         f"RAM: {ram}%\n"
         f"DISK: {disk}%"

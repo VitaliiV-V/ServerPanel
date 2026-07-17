@@ -87,7 +87,8 @@ async def monitor():
             cpu_warn_sent = True
 
         elif cpu < 60:
-            await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 CPU usage is back to normal")
+            if cpu_warn_sent:
+                await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 CPU usage is back to normal")
             cpu_warn_sent = False
 
 
@@ -100,7 +101,8 @@ async def monitor():
             ram_warn_sent = True
 
         elif ram < 60:
-            await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 Memory usage is back to normal")
+            if ram_warn_sent:
+                await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 Memory usage is back to normal")
             ram_warn_sent = False
 
 
@@ -113,7 +115,8 @@ async def monitor():
             temp_warn_sent = True
 
         elif temp and temp < 60:
-            await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 CPU temperature is back to normal")
+            if temp_warn_sent:
+                await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 CPU temperature is back to normal")
             temp_warn_sent = False
 
 

@@ -36,10 +36,6 @@ async function updateStats() {
 
 setInterval(updateStats, 500);
 
-document.querySelector(".volume").addEventListener("change", function () {
-  console.log("Финальное значение:", slider.value);
-});
-
 document.querySelector(".reboot").addEventListener("click", async () => {
 
     const ok = confirm("Are you sure you want to reboot your computer?");
@@ -52,23 +48,6 @@ document.querySelector(".reboot").addEventListener("click", async () => {
         },
         body: JSON.stringify({
             "command": "reboot",
-        })
-    })
-});
-
-
-document.querySelector(".suspend").addEventListener("click", async () => {
-
-    const ok = confirm("Are you sure you want to suspend your computer?");
-    if (!ok) return;
-
-    const response = await fetch("http://192.168.2.101:8000/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "command": "suspend",
         })
     })
 });
@@ -89,60 +68,6 @@ document.querySelector(".poweroff").addEventListener("click", async () => {
         })
     })
 
-});
-
-document.querySelector(".lock").addEventListener("click", async () => {
-
-    const ok = confirm("Are you sure you want to lock your computer?");
-    if (!ok) return;
-
-    const response = await fetch("http://192.168.2.101:8000/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "command": "lock",
-        })
-    })
-});
-
-
-
-document.querySelector(".btn-play").addEventListener("click", async () => {
-    const response = await fetch("http://192.168.2.101:8000/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "command": "playpause",
-        })
-    })
-});
-
-document.querySelector(".btn-next").addEventListener("click", async () => {
-    const response = await fetch("http://192.168.2.101:8000/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "command": "next",
-        })
-    })
-});
-
-document.querySelector(".btn-prev").addEventListener("click", async () => {
-    const response = await fetch("http://192.168.2.101:8000/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            "command": "previous",
-        })
-    })
 });
 
 

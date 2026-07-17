@@ -16,6 +16,7 @@ async function updateStats() {
         document.querySelector(".valueip").textContent = data2.myip;
         document.querySelector(".valuehost").textContent = data2.host;
         document.querySelector(".valueos").textContent = data2.os;
+        document.querySelector(".status").textContent = "🟢 Online";
         document.querySelector(".valuekernel").textContent = data2.kernel;
         document.querySelector(".valuepackages").textContent = data2.packages;
         document.querySelector(".valueshell").textContent = data2.shell;
@@ -25,25 +26,6 @@ async function updateStats() {
         document.querySelector(".valueswap").textContent = data2.swap;
         document.querySelector(".valuedisk").textContent = data2.diskname;
         document.querySelector(".valuetime").textContent = data2.uptime;
-        document.querySelector(".trackname").textContent = data2.track;
-        document.querySelector(".position").textContent = data2.position;
-        document.querySelector(".length").textContent = data2.length;
-        document.querySelector(".vol").textContent = data2.volume + '%';
-
-        document.querySelector(".status").textContent = "🟢 Online";
-        if(data2.status == "Playing\n") {
-            document.querySelector(".btn-play").innerHTML =
-            '<i class="fas fa-pause" style="font-size: 40px; padding-right: 5px;"></i>';   } else {
-            document.querySelector(".btn-play").innerHTML =
-            '<i class="fas fa-play" style="font-size: 40px;"></i>';
-        }
-        const slider = document.querySelector(".slider");
-
-        slider.value = data2.progress;
-
-        const volume = document.querySelector(".volume");
-
-        volume.value = data2.volume;
     } catch (error) {
         // Сервер недоступен
         document.querySelector(".status").textContent = "🔴 Offline";

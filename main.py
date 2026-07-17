@@ -64,9 +64,12 @@ def index(auth: bool = Depends(check_auth)):
 def index():
     return RedirectResponse(url="/main")
 
+cpu_warn_sent = False
+ram_warn_sent = False
+temp_warn_sent = False
 
 @app.get("/info")
-def info():
+async def info():
     boot_time = psutil.boot_time()
     uptime_seconds = int(time.time() - boot_time)
     logs = subprocess.run(
@@ -80,6 +83,10 @@ def info():
         capture_output=True,
         text=True
     ).stdout)
+
+    cpu = psutil.cpu_percent(interval=0.5)
+    ram = psutil.virtual_memory().percent
+    temp = get_cpu_temp()
 
     res = {
         "cpu": psutil.cpu_percent(interval=0.5),
@@ -100,6 +107,43 @@ def info():
         "volume" : 0,
         "logs" : logs
     }
+    
+    # CPU
+    if cpu >= 90 and not cpu_warn_sent:
+        await bot_app.bot.send_message(
+            chat_id=OWNER_ID,
+            text=f"⚠️ CPU warning\n\n🖥 Server: {socket.gethostname()}\n🔥 CPU usage: {cpu}%"
+        )
+        cpu_warn_sent = True
+
+    elif cpu < 85:
+        cpu_warn_sent = False
+
+
+    # RAM
+    if ram >= 20 and not ram_warn_sent:
+        await bot_app.bot.send_message(
+            chat_id=OWNER_ID,
+            text=f"⚠️ Memory warning\n\n🖥 Server: {socket.gethostname()}\n🧠 RAM usage: {ram}%"
+        )
+        ram_warn_sent = True
+
+    elif ram < 85:
+        ram_warn_sent = False
+
+
+    # Температура
+    if temp and temp >= 85 and not temp_warn_sent:
+        await bot_app.bot.send_message(
+            chat_id=OWNER_ID,
+            text=f"🌡 CPU temperature warning\n\n🖥 Server: {socket.gethostname()}\n🔥 Temperature: {temp}°C"
+        )
+        temp_warn_sent = True
+
+    elif temp and temp < 75:
+        temp_warn_sent = False
+
+
     for item in sysinfo:
         key = item.get("type")
 

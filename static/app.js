@@ -13,6 +13,7 @@ async function updateStats() {
     document.querySelector(".tempbar2").style.width = data2.temp + "%";
     document.querySelector(".fanbar2").style.width = 50 + "%";
     document.querySelector(".logs").value = data2.logs;
+    document.querySelector(".valueip").textContent = data2.myip;
     document.querySelector(".valuehost").textContent = data2.hostname;
     document.querySelector(".valueos").textContent = data2.os;
     document.querySelector(".valuekernel").textContent = data2.kernel;
@@ -21,7 +22,6 @@ async function updateStats() {
     document.querySelector(".position").textContent = data2.position;
     document.querySelector(".length").textContent = data2.length;
     document.querySelector(".vol").textContent = data2.volume + '%';
-    document.querySelector(".valueip").textContent = data2.myip;
 
     if(data2.status == "Playing\n") {
         document.querySelector(".btn-play").innerHTML =

@@ -15,6 +15,7 @@ OWNER_ID = os.getenv("OWNER_ID")
 bot_app = ApplicationBuilder().token(TOKEN).build()
 
 async def start(update: Update, context):
+    print(update.message.from_user.id)
     if update.message.from_user.id == OWNER_ID:
         await update.message.reply_text("🟢 Серверный бот запущен")
 

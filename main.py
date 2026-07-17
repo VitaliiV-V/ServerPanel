@@ -202,7 +202,7 @@ async def startup():
     await start_bot()
     await bot_app.bot.send_message(
         chat_id = OWNER_ID,
-        text = f"🟢 Server {socket.gethostname()} is online"
+        text = f"🟢 {socket.gethostname()} is online"
     )
 
 

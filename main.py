@@ -76,7 +76,20 @@ def get_fan_speed():
             return int(f.read().strip())
     except:
         return None
-    
+
+def format_bytes(used, total):
+    units = ["B", "KB", "MB", "GB", "TB"]
+
+    def convert(value):
+        size = float(value)
+        for unit in units:
+            if size < 1024:
+                return f"{round(size, 2)} {unit}"
+            size /= 1024
+        return f"{round(size, 2)} PB"
+
+    return f"{convert(used)} / {convert(total)}"
+
 @app.get("/info")
 def info():
     boot_time = psutil.boot_time()
@@ -127,19 +140,16 @@ def info():
 
 
         elif key == "Memory":
-            res["eram"] = {
-                "used": item["result"]["used"],
-                "total": item["result"]["total"]
-            }
+            res["eram"] = format_bytes(
+                item["result"]["used"],
+                item["result"]["total"]
+            )
 
         elif key == "Swap":
-            total = sum(swap["total"] for swap in item["result"])
-            used = sum(swap["used"] for swap in item["result"])
+            used = sum(x["used"] for x in item["result"])
+            total = sum(x["total"] for x in item["result"])
 
-            res["swap"] = {
-                "used": used,
-                "total": total
-            }
+            res["swap"] = format_bytes(used, total)
         elif key == "Packages":
             res["packages"] = item["result"]["all"]
         elif key == "GPU":

@@ -45,7 +45,7 @@ body {
     padding-left: 10px;
     text-align: left;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
     width: 20%;
     min-height: 120vh;
 }
@@ -91,7 +91,7 @@ body {
     padding: 5px;
     text-align: left;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
     display: flex;
     gap: 5px;
 }
@@ -104,7 +104,7 @@ body {
     gap: 10px;
     box-sizing: border-box;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
 }
 
 
@@ -155,7 +155,7 @@ body {
     padding-right: 10px;
     padding-bottom: 10px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
     width: 25%;
     display: flex;
     flex: 1;
@@ -184,7 +184,7 @@ body {
 .tempbar,
 .fanbar {
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
     align-items: flex-start;
     height: var(--bar-height);
     width: 100%;
@@ -221,7 +221,7 @@ body {
 .fanbar2 {
     background: #685CCC;
     border-radius: 12px 0px 0px 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
     align-items: flex-start;
     height: var(--bar-height);
     width: 100%;
@@ -327,7 +327,7 @@ body {
 button {
     font-size: 18px;
     background: var(--bg);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   
 
     color: var(--fg);
     border: none;

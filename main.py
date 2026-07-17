@@ -132,11 +132,11 @@ def info():
         elif key == "Shell":
             res["shell"] = item["result"]["exe"]
 
-        # elif key == "Swap":
-        #     res["swap"] = {
-        #         "used": item["result"]["used"],
-        #         "total": item["result"]["total"]
-        #     }
+        elif key == "Swap":
+            res["swap"] = {
+                "used": item["result"]["used"],
+                "total": item["result"]["total"]
+            }
         # elif key == "Packages":
         #     res["packages"] = item["result"]["all"]
         # elif key == "GPU":

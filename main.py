@@ -208,6 +208,10 @@ async def startup():
 
 @app.on_event("shutdown")
 async def shutdown():
+    await bot_app.bot.send_message(
+        chat_id = OWNER_ID,
+        text = f"🔴 {socket.gethostname()} is offline"
+    )
     await stop_bot()
 
 if __name__ == "__main__":

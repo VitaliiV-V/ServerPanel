@@ -70,6 +70,8 @@ temp_warn_sent = False
 
 @app.get("/info")
 async def info():
+    
+    global cpu_warn_sent, ram_warn_sent, temp_warn_sent
     boot_time = psutil.boot_time()
     uptime_seconds = int(time.time() - boot_time)
     logs = subprocess.run(

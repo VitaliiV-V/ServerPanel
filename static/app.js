@@ -30,6 +30,7 @@ async function updateStats() {
         document.querySelector(".length").textContent = data2.length;
         document.querySelector(".vol").textContent = data2.volume + '%';
 
+        document.querySelector(".status").textContent = "🟢 Online";
         if(data2.status == "Playing\n") {
             document.querySelector(".btn-play").innerHTML =
             '<i class="fas fa-pause" style="font-size: 40px; padding-right: 5px;"></i>';   } else {

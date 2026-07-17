@@ -24,14 +24,14 @@ body {
     font-family: monospace;
     font-size: 14px;
     box-sizing: border-box;
-    background: var(--bg);
+    background: var(--bg5);
     color: var(--fg);
 }
 
 body {
     font-family: Arial;
     text-align: center;
-    background: var(--bg5);
+    background: var(--bg);
     display: flex;
     padding: 5px;
     box-sizing: border-box;

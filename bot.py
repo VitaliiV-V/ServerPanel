@@ -29,8 +29,8 @@ async def status(update: Update, context):
             f"🗄️ Server Status\n\n"
             f"CPU: {cpu}%\n"
             f"RAM: {ram}%\n"
-            f"DISK: {disk}%"
-            f"CPU TEMP: {get_cpu_temp()}"
+            f"DISK: {disk}%\n"
+            f"CPU TEMP: {get_cpu_temp()}\n"
             f"FAN SPEED: {get_fan_speed()}"
        )
 

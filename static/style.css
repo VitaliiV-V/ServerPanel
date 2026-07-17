@@ -371,15 +371,6 @@ button:hover {
     background: var(--bg4);
 }
 
-.hostname,
-.OS,
-.Kernel,
-.Up,
-.IP {
-    color: #505050;
-}
-
-
 .dark {
     --bg: #121212;
     --bg2: #181818;

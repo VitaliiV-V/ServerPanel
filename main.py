@@ -79,7 +79,7 @@ def get_fan_speed():
 def info():
     boot_time = psutil.boot_time()
     uptime_seconds = int(time.time() - boot_time)
-
+    logs = subprocess.run(['playerctl', 'metadata', '--format', '{{ mpris:length / 1000000 }}'], capture_output=True, text=True).stdout
     return {
         "cpu": psutil.cpu_percent(interval=0.5),
         "fan" : get_fan_speed(),
@@ -96,7 +96,8 @@ def info():
         "progress" : 0, 
         "position" : "None",
         "length" : "None",
-        "volume" : 0
+        "volume" : 0,
+        "logs" : logs
     }
 
 @app.post("/exec")

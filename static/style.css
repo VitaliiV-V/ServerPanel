@@ -460,7 +460,7 @@ button:hover {
     padding-right: 11px;
     padding-bottom: 3px;
     border-radius: 100px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.0);
+   
 }
 
 .btn-prev {
@@ -469,7 +469,7 @@ button:hover {
     padding-right: 11px;
     padding-bottom: 3px;
     border-radius: 100px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.0);
+   
 }
 
 .btn-prev:active,

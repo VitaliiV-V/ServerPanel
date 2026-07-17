@@ -12,6 +12,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from telegram import InputTextMessageContent,InlineQueryResultArticle, Update
+from telegram.ext import InlineQueryHandler, ApplicationBuilder, CommandHandler, MessageHandler, filters, ChatMemberHandler
 import subprocess
 from fastapi import Request
 import secrets
@@ -25,6 +27,7 @@ security = HTTPBasic()
 
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
+TOKEN = os.getenv("TOKEN")
 
 def check_auth(credentials: HTTPBasicCredentials = Depends(security)):
     correct_user = secrets.compare_digest(credentials.username, USERNAME)
@@ -192,6 +195,48 @@ async def exec(request: Request):
         "message" : "ok"
     }
 
+bot_app = ApplicationBuilder().token(TOKEN).build()
+
+async def start(update: Update, context):
+    await update.message.reply_text("🟢 Серверный бот запущен")
+
+
+async def status(update: Update, context):
+    cpu = psutil.cpu_percent()
+    ram = psutil.virtual_memory().percent
+    disk = psutil.disk_usage('/').percent
+
+    await update.message.reply_text(
+        f"🖥 Server Status\n\n"
+        f"CPU: {cpu}%\n"
+        f"RAM: {ram}%\n"
+        f"DISK: {disk}%"
+    )
+
+
+bot_app.add_handler(CommandHandler("start", start))
+bot_app.add_handler(CommandHandler("status", status))
+
+async def start_bot():
+    await bot_app.initialize()
+    await bot_app.start()
+    await bot_app.updater.start_polling()
+
+
+async def stop_bot():
+    await bot_app.updater.stop()
+    await bot_app.stop()
+    await bot_app.shutdown()
+
+
+@app.on_event("startup")
+async def startup():
+    await start_bot()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await stop_bot()
 
 if __name__ == "__main__":
     while True:

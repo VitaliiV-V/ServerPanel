@@ -122,8 +122,6 @@ def info():
         elif key == "Host":
             res["host"] = item["result"]["name"]
 
-        elif key == "Uptime":
-            res["uptime"] = item["result"]["pretty"]
 
         # elif key == "Memory":
         #     res["ram"] = {

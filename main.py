@@ -5,6 +5,7 @@ import psutil
 import socket
 import platform
 import time
+import json
 import datetime
 import requests
 from fastapi.middleware.cors import CORSMiddleware
@@ -85,11 +86,11 @@ def info():
         text=True
     ).stdout
 
-    sysinfo = subprocess.run(
+    sysinfo = json.loads(subprocess.run(
         ["fastfetch", "--format", "json"],
         capture_output=True,
         text=True
-    ).stdout
+    ).stdout)
 
     res = {
         "cpu": psutil.cpu_percent(interval=0.5),
@@ -142,7 +143,7 @@ def info():
         elif key == "GPU":
             res["gpu"] = item["result"]["name"]
         elif key == "CPU":
-            res["gpu"] = item["result"]["name"]
+            res["cpu"] = item["result"]["name"]
         elif key == "Disk":
             res["disk"] = item["result"]
     return res

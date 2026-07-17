@@ -80,7 +80,7 @@ def info():
     boot_time = psutil.boot_time()
     uptime_seconds = int(time.time() - boot_time)
     logs = subprocess.run(
-        ["journalctl", "-n", "20", "--no-pager"],
+        ["journalctl", "-n", "100", "--no-pager"],
         capture_output=True,
         text=True
     ).stdout

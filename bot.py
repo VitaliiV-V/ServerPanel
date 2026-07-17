@@ -9,27 +9,30 @@ from tools import *
 load_dotenv("/home/master/Panel/.env")
 
 TOKEN = os.getenv("TOKEN")
+OWNER_ID = os.getenv("OWNER_ID")
 
 
 bot_app = ApplicationBuilder().token(TOKEN).build()
 
 async def start(update: Update, context):
-    await update.message.reply_text("🟢 Серверный бот запущен")
+    if update.msg.from_user.id == OWNER_ID:
+        await update.message.reply_text("🟢 Серверный бот запущен")
 
 
 async def status(update: Update, context):
-    cpu = psutil.cpu_percent()
-    ram = psutil.virtual_memory().percent
-    disk = psutil.disk_usage('/').percent
+    if update.msg.from_user.id == OWNER_ID:
+        cpu = psutil.cpu_percent()
+        ram = psutil.virtual_memory().percent
+        disk = psutil.disk_usage('/').percent
 
-    await update.message.reply_text(
-        f"🗄️ Server Status\n\n"
-        f"CPU: {cpu}%\n"
-        f"RAM: {ram}%\n"
-        f"DISK: {disk}%"
-        f"CPU TEMP: {get_cpu_temp()}"
-        f"FAN SPEED: {get_fan_speed()}"
-    )
+        await update.message.reply_text(
+            f"🗄️ Server Status\n\n"
+            f"CPU: {cpu}%\n"
+            f"RAM: {ram}%\n"
+            f"DISK: {disk}%"
+            f"CPU TEMP: {get_cpu_temp()}"
+            f"FAN SPEED: {get_fan_speed()}"
+       )
 
 
 bot_app.add_handler(CommandHandler("start", start))

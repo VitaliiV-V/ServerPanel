@@ -138,7 +138,7 @@ async def info():
     if temp and temp >= 60 and not temp_warn_sent:
         await bot_app.bot.send_message(
             chat_id=OWNER_ID,
-            text=f"🌡 CPU temperature warning\n\n Temperature: {temp}°C"
+            text=f"⚠️ CPU temperature warning\n\n Temperature: {temp}°C"
         )
         temp_warn_sent = True
 

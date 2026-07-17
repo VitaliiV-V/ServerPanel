@@ -47,7 +47,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 20%;
-    height: 130 vh;
+    min-height: 120vh;
 }
 
 .main {
@@ -60,7 +60,7 @@ body {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
-    min-height: 130vh;
+    min-height: 120vh;
 }
 
 .monitor {
@@ -75,14 +75,14 @@ body {
     text-align: left;
     display: flex;
     gap: 5px;
-    flex: 5;
+    flex: 2;
 }
 
 .systeminfo {
     text-align: left;
     display: flex;
     gap: 5px;
-    flex: 3;
+    flex: 4;
     height: 90%;
 }
 

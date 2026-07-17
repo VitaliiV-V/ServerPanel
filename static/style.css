@@ -163,6 +163,8 @@ body {
     gap: 10px;
 
     align-items: center-start;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .cpu,
@@ -176,7 +178,6 @@ body {
     flex-direction: row;
     gap: 10px;
     margin-bottom: 1%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .cpubar,

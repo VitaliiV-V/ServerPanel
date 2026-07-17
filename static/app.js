@@ -17,6 +17,8 @@ async function updateStats() {
     document.querySelector(".valuehost").textContent = data2.hostname;
     document.querySelector(".valueos").textContent = data2.os;
     document.querySelector(".valuekernel").textContent = data2.kernel;
+
+    document.querySelector(".valuepackages").textContent = data2.packages;
     document.querySelector(".valuetime").textContent = data2.uptime;
     document.querySelector(".trackname").textContent = data2.track;
     document.querySelector(".position").textContent = data2.position;

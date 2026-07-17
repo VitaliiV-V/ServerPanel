@@ -132,7 +132,7 @@ def info():
             res["os"] = item["result"]["prettyName"]
 
         elif key == "Kernel":
-            res["kernel"] = item["result"]["release"]
+            res["kernel"] = item["result"]["name"] + " " + item["result"]["release"]
             res["os"] += " " + item["result"]["architecture"]
 
         elif key == "Host":

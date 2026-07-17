@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="card1">
+        <h2><i class="fa-solid fa-gear"></i> Panel</h2>
+    </div>
+
+    <div class="main">
+
+        <div class="head">
+            <h2>Welcome back <i class="fab fa-linux"></i> </h2>
+            <button class="theme" onclick="toggleTheme()"> <i id="themeIcon" class="fa-solid fa-moon"></i></button>
+        </div>
+
+        <div class="monitor">
+            <div class="cpubox">
+                <div class="cpu">
+                    <div class="cpulogo">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+
+                    <div class="cpudata">
+                        <i style="font-size: 20px;">CPU</i>
+                        <strong><i class="cpuval" style="font-size: 20px;">Loading...</i></strong>
+                    </div>
+
+                </div>
+                <div class="cpubar">
+                    <div class="cpubar2">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="rambox">
+                <div class="ram">
+                    <div class="ramlogo">
+                        <i class="fa-solid fa-memory"></i>
+                    </div>
+                    <div class="ramdata">
+                        <i style="font-size: 20px;">RAM</i>
+                        <strong><i class="ramval" style="font-size: 20px;">Loading...</i></strong>
+                    </div>
+
+                </div>
+                <div class="rambar">
+                    <div class="rambar2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="diskbox">
+                <div class="disk">
+                    <div class="disklogo">
+                        <i class="fa-solid fa-hard-drive"></i>
+                    </div>
+                    <div class="diskdata">
+                        <i style="font-size: 20px;">DISK</i>
+                        <strong><i class="diskval" style="font-size: 20px;">Loading...</i></strong>
+                    </div>
+
+                </div>
+                <div class="diskbar">
+                    <div class="diskbar2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tempbox">
+                <div class="temp">
+                    <div class="templogo">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+                    <div class="tempdata">
+                        <i style="font-size: 20px;">CPU TEMP</i>
+                        <strong><i class="tempval" style="font-size: 20px;">Loading...</i></strong>
+                    </div>
+                </div>
+                <div class="tempbar">
+                    <div class="tempbar2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fanbox">
+                <div class="fan">
+                    <div class="fanlogo">
+                        <i class="fa-solid fa-fan"></i>
+                    </div>
+                    <div class="fandata">
+                        <i style="font-size: 20px;">FAN SPEED</i><br>
+                        <strong><i class="fanval" style="font-size: 20px;">Loading...</i></strong>
+                    </div>
+                </div>
+                <div class="fanbar">
+                    <div class="fanbar2">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="commands">
+            <div class="graph">
+                <strong><i style="font-size: 20px;">Player</i></strong>
+                <div class="player">
+                    <div class="player-logo">
+                        <span style="font-family: 'Font Awesome 5 Free'; font-weight: 900">&#xf001;</span>
+                    </div>
+                    <div class="player-data">
+
+                        <strong><span class="trackname" style="font-size: 18px;">TrackName</span></strong>
+
+                        <div class="slider-wrap">
+                            <i class="position" style="font-size: 20px;">0:00</i>
+                            <input type="range" min="0" max="100" value="0" class="slider" id="slider">
+                            <i class="length" style="font-size: 20px;">0:00</i>
+                        </div>
+                        <div class="player-buttons">
+
+                            <button class="btn-prev">
+                                <i class="fas fa-step-backward" style="font-size: 25px;"></i>
+                            </button>
+
+                            <button class="btn-play">
+                                <i class="fas fa-play" style="font-size: 40px;"></i>
+                            </button>
+
+                            <button class="btn-next">
+                                <i class="fas fa-step-forward " style="font-size: 25px;"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <i>&nbsp;</i>
+                <div class="slider-wrap">
+                    <i class="fa fa-volume-up"></i>
+                    <input type="range" min="0" max="100" value="0" class="volume" id="volume">
+                    <i class="vol" style="font-size: 20px;">0%</i>
+                </div>
+            </div>
+
+            <div class="power">
+                <strong><i style="font-size: 20px;">System Management</i></strong>
+                <div class="btn-grid">
+                    <button class="reboot"><i class="fa-solid fa-rotate-right"
+                            style="color: #5d36c9;"></i><br>Reboot</button>
+                    <button class="poweroff"><i class="fa-solid fa-power-off" style="color: #5d36c9;"></i><br> Power
+                        Off</button>
+                    <button class="suspend"><i class="fa-solid far fa-moon" style="color: #5d36c9;"></i><br> Suspend</button>
+                    <button class="lock"><i class="fa-solid fa-lock" style="color: #5d36c9;"></i><br>
+                        Lock</button> 
+                </div>
+            </div>
+        </div>
+
+        <div class="systeminfo">
+            <div class="info">
+                <strong><i style="font-size: 20px;">System Information</i></strong><br>
+                <div class="host">
+                    <span class="hostname"><i class="fas fa-laptop"></i>&nbsp;Hostname</span>
+                    <i class="valuehost">Loading...</i>
+                </div>
+                <div class="host">
+                    <span class="OS"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;OS</span>
+                    <span class="valueos">Loading...</span>
+                </div>
+                <div class="host">
+                    <span class="Kernel"><i class="fas fa-code"></i>&nbsp;Kernel</span>
+                    <span class="valuekernel">Loading...</span>
+                </div>
+                <div class="host">
+                    <span class="Up"><i class="far fa-clock"></i>&nbsp;&nbsp;Up time</span>
+                    <span class="valuetime">Loading...</span>
+                </div>
+                <div class="host">
+                    <span class="IP"><i class="fas fa-network-wired"></i>&nbsp;Current IP</span>
+                    <span class="valueip">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <p id="result"></p>
+
+    <script src="/static/app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

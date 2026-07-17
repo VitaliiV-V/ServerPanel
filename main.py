@@ -108,6 +108,7 @@ async def monitor():
 
 
         # Temperature
+        
         if temp and temp >= 70 and not temp_warn_sent:
             await bot_app.bot.send_message(
                 chat_id=OWNER_ID,

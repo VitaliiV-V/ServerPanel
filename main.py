@@ -28,6 +28,7 @@ security = HTTPBasic()
 
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
+OWNER_ID = os.getenv("OWNER_ID")
 
 def check_auth(credentials: HTTPBasicCredentials = Depends(security)):
     correct_user = secrets.compare_digest(credentials.username, USERNAME)
@@ -199,6 +200,10 @@ async def exec(request: Request):
 @app.on_event("startup")
 async def startup():
     await start_bot()
+    await bot_app.bot.send_message(
+        chat_id=OWNER_ID,
+        text="Server is online"
+    )
 
 
 @app.on_event("shutdown")

@@ -125,7 +125,7 @@ async def monitor():
 
         await asyncio.sleep(10)
 
-        
+
 @app.get("/info")
 async def info():
     
@@ -214,9 +214,9 @@ async def exec(request: Request):
     data = await request.json()
     print(data["command"])
     if data["command"] == "poweroff":
-        subprocess.run(["poweroff"])
+        subprocess.run(["systemctl", "poweroff"])
     elif data["command"] == "reboot":
-        subprocess.run(["reboot"])
+        subprocess.run(["systemctl", "reboot"])
     elif data["command"] == "suspend":        
         subprocess.run(["systemctl", "suspend"])
     elif data["command"] == "lock":

@@ -123,13 +123,13 @@ def info():
             res["host"] = item["result"]["name"]
 
 
-        # elif key == "Memory":
-        #     res["ram"] = {
-        #         "used": item["result"]["used"],
-        #         "total": item["result"]["total"]
-        #     }
-        # elif key == "Shell":
-        #     res["shell"] = item["result"]["name"]
+        elif key == "Memory":
+            res["ram"] = {
+                "used": item["result"]["used"],
+                "total": item["result"]["total"]
+            }
+        elif key == "Shell":
+            res["shell"] = item["result"]["exe"]
 
         # elif key == "Swap":
         #     res["swap"] = {

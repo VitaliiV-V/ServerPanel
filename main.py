@@ -140,16 +140,28 @@ def info():
                 "used": used,
                 "total": total
             }
-        # elif key == "Packages":
-        #     res["packages"] = item["result"]["all"]
-        # elif key == "GPU":
-        #     res["gpu"] = [
-        #         gpu["name"] for gpu in item["result"]
-        #     ]
-        # elif key == "CPU":
-        #     res["cpu"] = item["result"]["name"]
-        # elif key == "Disk":
-        #     res["disk"] = item["result"]
+        elif key == "Packages":
+            res["packages"] = item["result"]["all"]
+        elif key == "GPU":
+            res["gpu"] = item["result"][0]["name"]
+        elif key == "CPU":
+            res["cpu"] = item["result"]["cpu"]
+        elif key == "Disk":
+            total = sum(
+                disk["bytes"]["total"]
+                for disk in item["result"]
+            )
+
+            used = sum(
+                disk["bytes"]["used"]
+                for disk in item["result"]
+            )
+
+            res["disk"] = {
+                "used": round(used / 1024**3, 2),
+                "total": round(total / 1024**3, 2),
+                "percent": round((used / total) * 100, 1)
+            }
     return res
 
 @app.post("/exec")

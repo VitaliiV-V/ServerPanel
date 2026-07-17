@@ -133,9 +133,12 @@ def info():
             res["shell"] = item["result"]["exe"]
 
         elif key == "Swap":
+            total = sum(swap["total"] for swap in item["result"])
+            used = sum(swap["used"] for swap in item["result"])
+
             res["swap"] = {
-                "used": item["result"]["used"],
-                "total": item["result"]["total"]
+                "used": used,
+                "total": total
             }
         # elif key == "Packages":
         #     res["packages"] = item["result"]["all"]

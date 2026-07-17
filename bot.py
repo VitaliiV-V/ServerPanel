@@ -15,12 +15,12 @@ OWNER_ID = os.getenv("OWNER_ID")
 bot_app = ApplicationBuilder().token(TOKEN).build()
 
 async def start(update: Update, context):
-    if update.effective_user.id == OWNER_ID:
+    if update.message.from_user.id == OWNER_ID:
         await update.message.reply_text("🟢 Серверный бот запущен")
 
 
 async def status(update: Update, context):
-    if update.effective_user.id == OWNER_ID:
+    if update.message.from_user.id == OWNER_ID:
         cpu = psutil.cpu_percent()
         ram = psutil.virtual_memory().percent
         disk = psutil.disk_usage('/').percent

@@ -86,10 +86,6 @@ async def info():
         text=True
     ).stdout)
 
-    cpu = psutil.cpu_percent(interval=0.5)
-    ram = psutil.virtual_memory().percent
-    temp = get_cpu_temp()
-
     res = {
         "cpu": psutil.cpu_percent(interval=0.5),
         "fan" : get_fan_speed(),
@@ -110,6 +106,9 @@ async def info():
         "logs" : logs
     }
     
+    cpu = res["cpu"]
+    ram = res["ram"]
+    temp = res["temp"]
     # CPU
     if cpu >= 70 and not cpu_warn_sent:
         await bot_app.bot.send_message(

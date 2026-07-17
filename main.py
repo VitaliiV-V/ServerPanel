@@ -145,7 +145,7 @@ def info():
         elif key == "GPU":
             res["gpu"] = item["result"][0]["name"]
         elif key == "CPU":
-            res["cpu"] = item["result"]["cpu"]
+            res["cpuname"] = item["result"]["cpu"]
         elif key == "Disk":
             total = sum(
                 disk["bytes"]["total"]
@@ -157,7 +157,7 @@ def info():
                 for disk in item["result"]
             )
 
-            res["disk"] = {
+            res["diskname"] = {
                 "used": round(used / 1024**3, 2),
                 "total": round(total / 1024**3, 2),
                 "percent": round((used / total) * 100, 1)

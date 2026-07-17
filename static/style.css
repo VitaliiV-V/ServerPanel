@@ -97,6 +97,7 @@ body {
 .main {
     padding-left: 10px;
     border-radius: 12px;
+    width: 80%;
     flex-direction: column;
     text-align: left;
     border-radius: 0px;

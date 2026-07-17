@@ -124,7 +124,7 @@ def info():
 
 
         elif key == "Memory":
-            res["ram"] = {
+            res["eram"] = {
                 "used": item["result"]["used"],
                 "total": item["result"]["total"]
             }

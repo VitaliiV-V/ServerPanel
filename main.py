@@ -10,6 +10,7 @@ import json
 import datetime
 import requests
 import asyncio
+from telegram.error import TimedOut, NetworkError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from fastapi import FastAPI, Depends, HTTPException, status
@@ -69,6 +70,20 @@ cpu_warn_sent = False
 ram_warn_sent = False
 temp_warn_sent = False
 
+async def send_message(text):
+    while True:
+        try:
+            await bot_app.bot.send_message(
+                chat_id=OWNER_ID,
+                text=text
+            )
+            break
+        except (TimedOut, NetworkError) as e:
+            print(f"Telegram error: {e}")
+            await asyncio.sleep(5)
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            await asyncio.sleep(5)
 
 async def monitor():
     global cpu_warn_sent, ram_warn_sent, temp_warn_sent
@@ -80,53 +95,37 @@ async def monitor():
 
         # CPU
         if cpu >= 70 and not cpu_warn_sent:
-            await bot_app.bot.send_message(
-                chat_id=OWNER_ID,
-                text=f"⚠️ CPU warning\n\nUsage: {cpu}%"
-            )
+            await send_message(f"⚠️ CPU warning\n\nUsage: {cpu}%")
             cpu_warn_sent = True
 
         elif cpu < 60:
             if cpu_warn_sent:
-                await bot_app.bot.send_message(chat_id=OWNER_ID, text=f"🟢 CPU usage is back to normal\n\nUsage: {cpu}%")
+                await send_message(f"🟢 CPU usage is back to normal\n\nUsage: {cpu}%")
                 cpu_warn_sent = False
-
 
         # RAM
         if ram >= 70 and not ram_warn_sent:
-            await bot_app.bot.send_message(
-                chat_id=OWNER_ID,
-                text=f"⚠️ Memory warning\n\nRAM usage: {ram}%"
-            )
+            await send_message(f"⚠️ Memory warning\n\nRAM usage: {ram}%")
             ram_warn_sent = True
 
         elif ram < 60:
             if ram_warn_sent:
-                await bot_app.bot.send_message(chat_id=OWNER_ID, text=f"🟢 Memory usage is back to normal\n\nRAM usage: {ram}%")
+                await send_message(f"🟢 Memory usage is back to normal\n\nRAM usage: {ram}%")
                 ram_warn_sent = False
 
-
-
         # Temperature
-        
-        if temp and temp >= 70 and not temp_warn_sent:
-            await bot_app.bot.send_message(
-                chat_id=OWNER_ID,
-                text=f"⚠️ CPU temperature warning\n\nTemperature: {temp}°C"
-            )
+        if temp is not None and temp >= 70 and not temp_warn_sent:
+            await send_message(f"⚠️ CPU temperature warning\n\nTemperature: {temp}°C")
             temp_warn_sent = True
 
-        elif temp and temp < 60:
+        elif temp is not None and temp < 60:
             if temp_warn_sent:
-                await bot_app.bot.send_message(
-                    chat_id=OWNER_ID,
-                    text=f"🟢 CPU temperature is back to normal\n\nTemperature: {temp}°C"
-                )
+                await send_message(f"🟢 CPU temperature is back to normal\n\nTemperature: {temp}°C")
                 temp_warn_sent = False
-
 
         await asyncio.sleep(10)
 
+        
 @app.get("/info")
 async def info():
     

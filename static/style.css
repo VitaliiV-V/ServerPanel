@@ -86,7 +86,7 @@ body {
     gap: 5px;
     flex: 4;
     height: 90%;
-
+    border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 

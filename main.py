@@ -87,7 +87,7 @@ async def info():
     ).stdout)
 
     res = {
-        "cpu": psutil.cpu_percent(interval=0.5),
+        "cpu": psutil.cpu_percent(),
         "fan" : get_fan_speed(),
         "temp": get_cpu_temp(),
         "ram": psutil.virtual_memory().percent,

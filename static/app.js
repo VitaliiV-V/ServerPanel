@@ -74,6 +74,7 @@ document.querySelector(".suspend").addEventListener("click", async () => {
 });
 
 document.querySelector(".poweroff").addEventListener("click", async () => {
+    console.log("clicked");
     const ok = confirm("Are you sure you want to turn off your computer?");
 
     if (!ok) return;

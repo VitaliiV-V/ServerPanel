@@ -118,7 +118,7 @@ async def info():
         )
         cpu_warn_sent = True
 
-    elif cpu < 70:
+    elif cpu < 60:
         cpu_warn_sent = False
 
 
@@ -130,12 +130,12 @@ async def info():
         )
         ram_warn_sent = True
 
-    elif ram < 70:
+    elif ram < 60:
         ram_warn_sent = False
 
 
     # Температура
-    if temp and temp >= 60 and not temp_warn_sent:
+    if temp and temp >= 70 and not temp_warn_sent:
         await bot_app.bot.send_message(
             chat_id=OWNER_ID,
             text=f"⚠️ CPU temperature warning\n\n Temperature: {temp}°C"

@@ -84,16 +84,22 @@ def info():
         capture_output=True,
         text=True
     ).stdout
-    return {
+
+    sysinfo = subprocess.run(
+        ["fastfetch", "--format", "json"],
+        capture_output=True,
+        text=True
+    ).stdout
+
+    res = {
         "cpu": psutil.cpu_percent(interval=0.5),
         "fan" : get_fan_speed(),
         "temp": get_cpu_temp(),
         "ram": psutil.virtual_memory().percent,
         "disk" : psutil.disk_usage('/').percent,
-        "hostname": socket.gethostname(),
-        "os": platform.system(),
         "kernel": platform.release(),
         "uptime": str(datetime.timedelta(seconds=uptime_seconds)),
+        "hostname": socket.gethostname(),
         "myip" : requests.get("https://api.ipify.org?format=json").json()["ip"],
         "track" : "None",
         "status" : "None", 
@@ -103,6 +109,43 @@ def info():
         "volume" : 0,
         "logs" : logs
     }
+    for item in sysinfo:
+        key = item.get("type")
+
+        if key == "OS":
+            res["os"] = item["result"]["prettyName"]
+
+        elif key == "Kernel":
+            res["kernel"] = item["result"]["release"]
+
+        elif key == "Host":
+            res["host"] = item["result"]["name"]
+
+        elif key == "Uptime":
+            res["uptime"] = item["result"]["pretty"]
+
+        elif key == "Memory":
+            res["ram"] = {
+                "used": item["result"]["used"],
+                "total": item["result"]["total"]
+            }
+        elif key == "Shell":
+            res["shell"] = item["result"]["name"]
+
+        elif key == "Swap":
+            res["swap"] = {
+                "used": item["result"]["used"],
+                "total": item["result"]["total"]
+            }
+        elif key == "Packages":
+            res["packages"] = item["result"]["all"]
+        elif key == "GPU":
+            res["gpu"] = item["result"]["name"]
+        elif key == "CPU":
+            res["gpu"] = item["result"]["name"]
+        elif key == "Disk":
+            res["disk"] = item["result"]
+    return res
 
 @app.post("/exec")
 async def exec(request: Request):

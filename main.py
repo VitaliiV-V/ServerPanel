@@ -116,14 +116,14 @@ def info():
         if key == "OS":
             res["os"] = item["result"]["prettyName"]
 
-        # elif key == "Kernel":
-        #     res["kernel"] = item["result"]["release"]
+        elif key == "Kernel":
+            res["kernel"] = item["result"]["release"]
 
-        # elif key == "Host":
-        #     res["host"] = item["result"]["name"]
+        elif key == "Host":
+            res["host"] = item["result"]["name"]
 
-        # elif key == "Uptime":
-        #     res["uptime"] = item["result"]["pretty"]
+        elif key == "Uptime":
+            res["uptime"] = item["result"]["pretty"]
 
         # elif key == "Memory":
         #     res["ram"] = {

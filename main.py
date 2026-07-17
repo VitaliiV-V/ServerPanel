@@ -134,7 +134,8 @@ if __name__ == "__main__":
                 "main:app",
                 host="192.168.2.101",
                 port=8000,
-                reload=False
+                reload=False,
+                access_log=False
             )
             break
         except Exception as e:

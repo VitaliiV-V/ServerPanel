@@ -21,6 +21,7 @@ async function updateStats() {
     document.querySelector(".position").textContent = data2.position;
     document.querySelector(".length").textContent = data2.length;
     document.querySelector(".vol").textContent = data2.volume + '%';
+    document.querySelector(".valueip").textContent = data2.myip;
 
     if(data2.status == "Playing\n") {
         document.querySelector(".btn-play").innerHTML =
@@ -35,8 +36,6 @@ async function updateStats() {
     const volume = document.querySelector(".volume");
 
     volume.value = data2.volume;
-
-    document.querySelector(".valueip").textContent = data2.myip;
 
 
 }

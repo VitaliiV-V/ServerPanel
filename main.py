@@ -102,7 +102,7 @@ async def monitor():
 
         elif ram < 60:
             if ram_warn_sent:
-                await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 Memory usage is back to normal\n\nRAM usage: {ram}%"")
+                await bot_app.bot.send_message(chat_id=OWNER_ID, text="🟢 Memory usage is back to normal\n\nRAM usage: {ram}%")
             ram_warn_sent = False
 
 
